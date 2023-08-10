@@ -4,19 +4,40 @@ $(document).ready(function(){
     var apikey ="1PM86ivvoKYdiurkdcQQwlqzG6a6gSD8qWV7s9W0tTuavtINk7l1knqL"
     var backgroundcount=0;
     var authorcount=0;
+    let imagesData=[];
+    let quotesData=[];
+
+    quotesearch();
+    imagesearch();
     
 
     $("#newquote").click(function (event){
         event.preventDefault();
+        const quoterandomizer = Math.floor(Math.random() * quotesData.length)
+        const backgroundrandomizer =  Math.floor(Math.random() * imagesData.length)
 
-        imagesearch();
-        quotechange();
+        $('.textbox').animate({ opacity: 0 }, 500, function () {
+            $(this).animate({ opacity: 1 }, 500);
+            $('#text').html(quotesData[quoterandomizer].quote);
+          });
+        
+        $('.author').animate({ opacity: 0 }, 500, function () {
+            $(this).animate({ opacity: 1 }, 500);
+            $('#author').html("- " + quotesData[quoterandomizer].source);
+          });
+        
+        $("body").css("background-image", "url(" + imagesData[backgroundrandomizer].src.original + ")");
+        $(":root").get(0).style.setProperty("--coloruse", imagesData[backgroundrandomizer].avg_color)
+        
+
+        //sol 1: create div, z index -1, put image inside it, new click replaces img
+        //get 20 links of images
 
         
     });
 
     function imagesearch(){
-        $.ajax({
+        return $.ajax({
             method: 'GET',
             beforeSend: function(xhr) {
                 xhr.setRequestHeader("Authorization", apikey);
@@ -25,21 +46,11 @@ $(document).ready(function(){
             url: "https://api.pexels.com/v1/search?query=nature&per_page=80",
 
             success: function(data) {
-                const backgroundrandomizer =  Math.floor(Math.random() * data.photos.length)
-                
-
-                
-
-                /*$('body').animate({ opacity: 0 }, 500, function () {
-                    $(this).animate({ opacity: 1 }, 500);
-                    $(":root").get(0).style.setProperty("--coloruse", data.photos[backgroundcount].avg_color)
-                    $("body").css("background-image", "url(" + data.photos[backgroundcount].src.original + ")");
-                });*/
             
-                $("body").css("background-image", "url(" + data.photos[backgroundrandomizer].src.original + ")");
-                $(":root").get(0).style.setProperty("--coloruse", data.photos[backgroundrandomizer].avg_color)
+
+                imagesData = data.photos;
+                console.log(imagesData)
                 
-                //backgroundcount+=1
             },
 
             error: function (error){
@@ -48,26 +59,17 @@ $(document).ready(function(){
         })
     }
 
-    function quotechange(){
-        $.ajax({
+    function quotesearch(){
+        return $.ajax({
             method: 'GET',
 
             url: "https://philosophy-quotes-api.glitch.me/quotes",
 
             success: function(data) {
-                const quoterandomizer = Math.floor(Math.random() * data.length)
+                quotesData= data;
+                console.log(quotesData)
                 
-                $('.textbox').animate({ opacity: 0 }, 500, function () {
-                    $(this).animate({ opacity: 1 }, 500);
-                    $('#text').html(data[quoterandomizer].quote);
-                  });
-                //$("#text").text(data[authorcount].quote)
-                $('.author').animate({ opacity: 0 }, 500, function () {
-                    $(this).animate({ opacity: 1 }, 500);
-                    $('#author').html("- " + data[quoterandomizer].source);
-                  });
                 
-                //authorcount+=1
             },
 
             error: function (error){
