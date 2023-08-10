@@ -59,12 +59,12 @@ $(document).ready(function(){
                 console.log(data[authorcount].quote)
                 $('.textbox').animate({ opacity: 0 }, 500, function () {
                     $(this).animate({ opacity: 1 }, 500);
-                    $('#text').text(data[authorcount].quote);
+                    $('#text').html(data[authorcount].quote);
                   });
                 //$("#text").text(data[authorcount].quote)
                 $('.author').animate({ opacity: 0 }, 500, function () {
                     $(this).animate({ opacity: 1 }, 500);
-                    $('#author').html(data[authorcount].source);
+                    $('#author').html("- " + data[authorcount].source);
                   });
                 
                 authorcount+=1
