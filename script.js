@@ -4,7 +4,7 @@ $(document).ready(function(){
     var apikey ="1PM86ivvoKYdiurkdcQQwlqzG6a6gSD8qWV7s9W0tTuavtINk7l1knqL"
     var backgroundcount=0;
     var authorcount=0;
-    quotechange();
+    
 
     $("#newquote").click(function (event){
         event.preventDefault();
