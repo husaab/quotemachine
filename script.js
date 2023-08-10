@@ -49,7 +49,7 @@ $(document).ready(function(){
             
 
                 imagesData = data.photos;
-                console.log(imagesData)
+                
                 
             },
 
@@ -67,7 +67,7 @@ $(document).ready(function(){
 
             success: function(data) {
                 quotesData= data;
-                console.log(quotesData)
+                
                 
                 
             },
