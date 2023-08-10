@@ -26,9 +26,7 @@ $(document).ready(function(){
 
             success: function(data) {
                 const backgroundrandomizer =  Math.floor(Math.random() * data.photos.length)
-                console.log(data)
-                console.log(data.photos[backgroundrandomizer].src.original)
-                console.log(data.photos[backgroundrandomizer].avg_color)
+                
 
                 
 
@@ -58,8 +56,7 @@ $(document).ready(function(){
 
             success: function(data) {
                 const quoterandomizer = Math.floor(Math.random() * data.length)
-                console.log(data)
-                console.log(data[quoterandomizer].quote)
+                
                 $('.textbox').animate({ opacity: 0 }, 500, function () {
                     $(this).animate({ opacity: 1 }, 500);
                     $('#text').html(data[quoterandomizer].quote);
