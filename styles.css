@@ -63,8 +63,9 @@ div{
     cursor: pointer;
 }
 
+
 #quotebox .buttons .button#tweet-quote,
-#quotebox .buttons .button#facebook-quote {
+#quotebox .buttons .button#copy-quote {
   float: left;
   padding: 0px;
   padding-top: 8px;
@@ -80,5 +81,13 @@ div{
 }
 
 .button#newquote:hover{
+    opacity: 0.7;
+}
+
+.button#tweet-quote:hover{
+    opacity: 0.7;
+}
+
+.button#copy-quote:hover{
     opacity: 0.7;
 }
